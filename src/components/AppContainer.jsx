@@ -9,7 +9,8 @@ const mapStateToProps = (state) => (
       label: `${airport.city} - ${airport.country} (${airport.code})`
     })),
     origin: state.route.origin,
-    destination: state.route.destination
+    destination: state.route.destination,
+    tickets: state.tickets
   }
 );
 
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch) => (
     },
     onChooseAirport(target, airport) {
       dispatch(AirportActionCreators.chooseAirport(target, airport));
+    },
+    fetchTickets(origin, destination) {
+      dispatch(AirportActionCreators.fetchTickets(origin, destination));
     }
   }
 );

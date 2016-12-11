@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Select from 'react-select';
+import TicketItem from './TicketItem';
 
 class App extends Component {
   static propTypes = {
@@ -7,12 +8,26 @@ class App extends Component {
     destination: PropTypes.string,
     airports: PropTypes.array.isRequired,
     fetchAirports: PropTypes.func.isRequired,
-    onChooseAirport: PropTypes.func.isRequired
+    onChooseAirport: PropTypes.func.isRequired,
+    tickets: PropTypes.array,
+    fetchTickets: PropTypes.func.isRequired
   }
   componentDidMount() {
     this.props.fetchAirports();
   }
+  /* eslint-disable no-unused-vars */
+  componentWillUpdate(nextProps, nextState) {
+    let originAndDestinationSelected = nextProps.origin && nextProps.destination;
+    let selectionHasChangedSinceLastUpdate = nextProps.origin !== this.props.origin ||
+                                             nextProps.destination !== this.props.destination;
+    if (originAndDestinationSelected && selectionHasChangedSinceLastUpdate) {
+      this.props.fetchTickets(nextProps.origin, nextProps.destination);
+    }
+  }
   render() {
+    let ticketList = this.props.tickets.map(ticket =>
+      <TicketItem key={ticket.id} ticket={ticket} />
+    );
     return (
       <div>
         <header>
@@ -35,6 +50,9 @@ class App extends Component {
             />
           </div>
         </header>
+        <div>
+          {ticketList}
+        </div>
       </div>
     );
   }

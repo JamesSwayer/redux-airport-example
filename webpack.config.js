@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 var webpack = require('webpack');
 var path = require('path');
+
 var AUTOPREFIXER_BROWSERS = [
   'Android 2.3',
   'Android >= 4',
@@ -38,6 +39,7 @@ module.exports = {
         test: /\.s?css$/,
         loaders: [
             'style-loader?sourceMap',
+            /* eslint-disable max-len */
             'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
             'postcss-loader?parser=postcss-scss'
         ]
