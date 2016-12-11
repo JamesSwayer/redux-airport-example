@@ -6,7 +6,7 @@ import 'whatwg-fetch';
 
 const AirCheapAPI = {
   fetchAirports() {
-    return fetch('https://aircheapapi.pro-react.com/airposts')
+    return fetch('https://aircheapapi.pro-react.com/airports')
     .then(response => response.json());
   }
 };

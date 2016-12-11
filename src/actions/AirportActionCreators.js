@@ -19,7 +19,7 @@ let AirportActionCreators = {
     return {
       type: CHOOSE_AIRPORT,
       target,
-      code: airport ? airport.valut : ''
+      code: airport ? airport.value : ''
     };
   }
 };
