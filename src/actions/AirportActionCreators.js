@@ -7,8 +7,8 @@ import
 } from '../constants';
 import AirCheapAPI from '../api/AirCheapAPI';
 
-/* eslint-disable */
-let AirportActionCreators = {
+  /* eslint-disable no-unused-vars */
+const AirportActionCreators = {
   // Thunk Action creator
   fetchAirports(origin, destination) {
     return (dispatch) => {
@@ -19,6 +19,7 @@ let AirportActionCreators = {
       );
     };
   },
+/* eslint-enable */
 
   // 不同的action creator
   chooseAirport(target, airport) {
@@ -29,6 +30,7 @@ let AirportActionCreators = {
     };
   },
 
+  /* eslint-disable no-unused-vars */
   fetchTickets(origin, destination) {
     return (dispatch) => {
       dispatch({ type: REQUEST_TICKETS });
@@ -36,8 +38,9 @@ let AirportActionCreators = {
         (tickets) => dispatch({ type: RECEIVE_TICKETS, success: true, tickets }),
         (error) => dispatch({ type: RECEIVE_TICKETS, success: false })
       );
-    }
+    };
   }
+  /* eslint-enable */
 };
 
 export default AirportActionCreators;

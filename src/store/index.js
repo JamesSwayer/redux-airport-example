@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from '../reducers/index';
 
@@ -9,10 +9,16 @@ const logger = (store) => (next) => (action) => {
   }
   return next(action);
 };
+/* eslint-enable */
+
+/* eslint-disable no-underscore-dangle */
+// redux chrome开发工具
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
 
 const aircheapStore = createStore(
   reducers,
-  applyMiddleware(logger, thunk)
+  composeEnhancers(applyMiddleware(logger, thunk))
 );
 
 export default aircheapStore;
